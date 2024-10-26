@@ -1,6 +1,6 @@
 import svg from "../../../assets/images/open-book.png";
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleAddToBookmark, handleReadTime }) => {
   const {
     cover,
     title,
@@ -39,7 +39,12 @@ const Blog = ({ blog }) => {
                 <p>{reading_time}min</p>
               </div>
               <div className="lg:mx-5">
-                <img className="h-5 w-5" src={svg} alt="" />
+                <img
+                  onClick={() => handleAddToBookmark(blog)}
+                  className="h-5 w-5"
+                  src={svg}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -47,8 +52,18 @@ const Blog = ({ blog }) => {
             <h2 className="lg:text-3xl lg:font-bold font-semibold lg:my-2">
               {title}
             </h2>
-            <p className="lg:font-semibold"># {hashtags}</p>
-            <p className="underline underline-offset-8 mb-2 ">mark as read</p>
+            {hashtags.map((hash, idx) => (
+              <span key={idx}>
+                <a href="">#{hash}</a>{" "}
+              </span>
+            ))}{" "}
+            <br />
+            <button
+              onClick={() => handleReadTime(reading_time)}
+              className="underline underline-offset-8 mb-2 "
+            >
+              mark as read
+            </button>
           </div>
         </div>
       </div>
